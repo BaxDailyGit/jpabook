@@ -197,3 +197,22 @@ public void setDelivery(Delivery delivery) {
 }
 ```
 
+## 애플리케이션 아키텍처
+
+<img alt="image" src="https://github.com/BaxDailyGit/jpabook/assets/99312529/45e7ad19-e9e5-47cb-9c46-1aeaba841793">
+
+```java
+모든것을 서비스를 거치는것이 아니라 간단한 경우에는 컨트롤러에서 바로 리포지토리를 호출하는것도 괜찮다.
+```
+```java
+패키지 구조
+    - jpabook.jpashop
+        - domain
+        - exception
+        - repository
+        - service
+        - web
+```
+```java
+개발 순서: 서비스, 리포지토리 계층을 개발하고, 테스트 케이스를 작성해서 검증, 마지막에 웹 계층 적용
+```
