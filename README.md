@@ -197,6 +197,8 @@ public void setDelivery(Delivery delivery) {
 }
 ```
 
+<hr>
+
 ## 애플리케이션 아키텍처
 
 <img alt="image" src="https://github.com/BaxDailyGit/jpabook/assets/99312529/45e7ad19-e9e5-47cb-9c46-1aeaba841793">
@@ -213,6 +215,30 @@ public void setDelivery(Delivery delivery) {
         - service
         - web
 ```
+
+<hr>
+
+## 개발 순서
+
 ```java
-개발 순서: 서비스, 리포지토리 계층을 개발하고, 테스트 케이스를 작성해서 검증, 마지막에 웹 계층 적용
+도메인,서비스, 리포지토리 계층을 먼저 개발하고, 테스트 케이스를 작성해서 검증, 마지막에 웹 계층 적용
 ```
+정리하자면
+
+1. 도메인 개발
+2. 서비스 개발
+3. 리포지토리 개발
+4. 기능 테스트 (테스트 케이스 작성)
+
+   (이때 회원을 1,2,3,4 순서로 개발하고나면 상품을 1,2,3,4 순서로 개발하고, 다음은 주문을 1,2,3,4 순서로 개발한다.)
+
+5. 웹 계층 개발 (thymeleaf)
+   (홈화면과 레이아웃, 관련 페이지들)
+6. API 개발
+   (controller)(CRUD)
+7. API 개발 고급
+   (조회용 샘플 데이터 입력, 지연로딩과 조회 성능 최적화, 컬렉션 조회 최적화, 페이징 한계 돌파, OSIV와 성능 최적화 등등)
+
+
+<hr>
+
