@@ -97,6 +97,7 @@ private Category parent; // 부모 카테고리 (계층구조)(자기 자신과 
 @OneToMany(mappedBy = "parent")
 private List<Category> child = new ArrayList<>(); // 자식 카테고리 (계층구조)(자기 자신과 연관관계를 맺는다.)
 ```
+
 <hr>
 
 ### 모든 연관관계는 지연로딩으로 설정!
@@ -121,23 +122,45 @@ private List<Category> child = new ArrayList<>(); // 자식 카테고리 (계층
 - 즉시로딩은 실무에서 사용하기 어렵다. 대부분 지연로딩을 사용해야 한다.
 ```
 
+<hr>
 
 
-
+### 컬렉션은 필드에서 초기화 하자.
 
 ```java
-
+컬렉션은 필드에서 바로 초기화 하는 것이 안전하다.
+- null 문제에서 안전하다.
+- 하이버네이트는 엔티티를 영속화 할 때, 컬랙션을 감싸서 하이버네이트가 제공하는 내장 컬렉션으로 변경한다.
+- 만약 getOrders() 처럼 임의의 메서드에서 컬렉션을 잘못 생성하면 하이버네이트 내부 메커니즘에 문제가 발생할 수 있다.
+- 따라서 필드레벨에서 초기화 하는 것이 가장 안전하고, 코드도 간결하다.
 ```
 
 ```java
+Member member = new Member();
+System.out.println(member.getOrders().getClass());
+em.persist(member);
+System.out.println(member.getOrders().getClass());
+//출력 결과
+class java.util.ArrayList
+class org.hibernate.collection.internal.PersistentBag
+```
 
+<hr>
+
+### 테이블, 컬럼명 생성 전략
+
+```java
+예를들어 @Table(name = "order_date")처럼 이름 직접 설정 안해놓으면 스프링부트에서 자동적으로 SpringPhysicalNamingStrategy을 따른다.
 ```
 
 ```java
-
+1. 카멜 케이스 언더스코어(memberPoint member_point)
+2. .(점) _(언더스코어)
+3. 대문자 소문자
 ```
 
 ```java
-
+회사마다 네이밍 전략이 다르다. 예를들어 'xx_테이블명' 이런식으로 네이밍을 한다.
 ```
+
 
