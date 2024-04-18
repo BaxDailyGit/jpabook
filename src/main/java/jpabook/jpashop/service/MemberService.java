@@ -19,7 +19,7 @@ public class MemberService {
     // 3. 생성자 주입
     // 생성자 주입을 권장한다.
 
-    // 핵심 기능: 회원 가입, 회원 전체 조회
+    // 핵심 기능: 회원 가입, 회원 전체 조회, 회원 단건 조회
     /*
     * 회원가입
     * */
@@ -51,7 +51,14 @@ public class MemberService {
 
 
     // 회원 전체 조회
-    
+    public List<Member> findMembers() {
+        return memberRepository.findAll();
+    }
+
+    // 회원 단건 조회
+    public Member findOne(Long memberId) {
+        return memberRepository.findOne(memberId);
+    }
 
 
 
