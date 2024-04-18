@@ -8,6 +8,8 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static jakarta.persistence.FetchType.LAZY;
+
 @Entity
 @Getter
 @Setter
@@ -26,10 +28,16 @@ public class Category {
             inverseJoinColumns = @JoinColumn(name = "item_id")) // 중간 테이블에 있는 item_id
     private List<Item> items = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "parent_id")
     private Category parent; // 부모 카테고리 (계층구조)(자기 자신과 연관관계를 맺는다.)
 
     @OneToMany(mappedBy = "parent")
     private List<Category> child = new ArrayList<>(); // 자식 카테고리 (계층구조)(자기 자신과 연관관계를 맺는다.)
+
+    //==연관관계 메서드==//
+    public void addChildCategory(Category child) {
+        this.child.add(child);
+        child.setParent(this);
+    }
 }

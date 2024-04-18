@@ -6,6 +6,8 @@ import jpabook.jpashop.domain.item.Item;
 import lombok.Getter;
 import lombok.Setter;
 
+import static jakarta.persistence.FetchType.LAZY;
+
 @Entity
 @Getter @Setter
 public class OrderItem {
@@ -15,11 +17,11 @@ public class OrderItem {
     @Column(name = "order_item_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "item_id") // 외래키를 매핑한다. item과
     private Item item;
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "order_id") // 외래키를 매핑한다. order와
     private Order order;
 

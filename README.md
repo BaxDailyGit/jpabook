@@ -112,7 +112,7 @@ private List<Category> child = new ArrayList<>(); // 자식 카테고리 (계층
 ```
 ```java
 @ManyToOne(fetch = FetchType.LAZY)
-@OneToMany(fetch = FetchType.LAZY)
+@OneToOne(fetch = FetchType.LAZY)
 ```
 ```
 - 안그러면 즉시로딩이 되어서 쿼리가 너무 많이 나간다.
@@ -160,7 +160,40 @@ class org.hibernate.collection.internal.PersistentBag
 ```
 
 ```java
-회사마다 네이밍 전략이 다르다. 예를들어 'xx_테이블명' 이런식으로 네이밍을 한다.
+회사마다 네이밍 전략이 다르다. 예를들어 'xx_테이블명', 'jpashop_테이블명' 이런식으로 네이밍을 한다.
 ```
 
+<hr>
+
+### Cascade
+
+```java
+CascadeType.ALL: 모두 적용
+CascadeType.PERSIST: 영속
+```
+
+<hr>
+
+### 연관관계 편의 메서드
+
+연관관계 편의 메서드를 생성하면 양방향 연관관계일 때 편리하다.
+
+```java
+//==연관관계 편의 메서드==//
+// 양방향 연관관계에서 양쪽에 값을 설정하는 메서드를 만들어주는 것이 좋다.
+// 둘 중 컨트롤 하는 쪽에 연관관계 편의 메서드를 만들어 주는것이 좋다.
+public void setMember(Member member) {
+    this.member = member;
+    member.getOrders().add(this);
+}
+public void addOrderItem(OrderItem orderItem) {
+    orderItems.add(orderItem);
+    orderItem.setOrder(this);
+}
+
+public void setDelivery(Delivery delivery) {
+    this.delivery = delivery;
+    delivery.setOrder(this);
+}
+```
 

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import static jakarta.persistence.FetchType.LAZY;
+
 @Entity
 @Getter
 @Setter
@@ -15,7 +17,7 @@ public class Delivery {
     private Long id;
 
 
-    @OneToOne(mappedBy = "delivery") // 양방향 매핑. 읽기 전용이다. 주인이 아닌쪽은 mappedBy를 사용한다.
+    @OneToOne(fetch = LAZY, mappedBy = "delivery") // 양방향 매핑. 읽기 전용이다. 주인이 아닌쪽은 mappedBy를 사용한다.
     private Order order;
 
     @Embedded
