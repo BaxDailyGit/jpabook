@@ -5,9 +5,9 @@
 ## 다시 보기
 
 지금껏 토이 플젝 하면서 설계가 이게 맞는지 싶고  
-개발도 이렇게 하는게 맞나 싶은 불안감이 항상 존재.  
-이 강의에서는 어떤 상황에서 어떤 행동을 하는지 나와있다.  
-반복적으로 다시 보고 플젝하고 다시 보고 플젝하자.  
+개발도 이렇게 하는게 맞나 싶은 불안감이 항상 존재한다.
+이 강의에서는 어떤 상황에서 어떤 작업을 해야하는지 상세히 나와있다.  
+얼른 다 따라해보고 플젝에 녹여보자.
 
 
 # 배운 내용 정리
@@ -263,7 +263,7 @@ public void setDelivery(Delivery delivery) {
 
 ```java
 
-@Repository // 자동으로 스프링 빈으로 등록된다. 까보면 @Component가 있으며 @Component스캔의 대상이 돼서
+@Repository // 자동으로 스프링 빈으로 등록된다. 까보면 @Component가 있으며 @Component스캔의 대상이 된다.
 // 스프링 부트 같은경우에 기본적으로 동작 방식 자체가
 // JpashopApplication클래스의 @SpringBootApplication이 있는 패키지와 그 하위 패키지들을 @Component스캔한다.
 // 그래서 @Repository를 붙이고 @SpringBootApplication이 있는 패키지의 하위 패키지안에 있으므로
